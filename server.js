@@ -1,10 +1,48 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const requestify = require('requestify');
 
 const app = express();
 const port = process.env.PORT || 5000;
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+}));
 
-app.get('/api/hello', (req, res) => {
-  res.send({ express: 'Hello From Express' });
-});
+
+const url = 'http://api.steampowered.com';
+const key = '7D5F2FA02FF09ACA687DE979BE355B30';
+
+
+
+
+const GetPlayerId = (req, res, next) => {
+  if (!req.body) return res.sendStatus(400)
+
+  requestify.get(url + '/ISteamUser/ResolveVanityURL/v0001/?key=' + key + '&vanityurl=gwellir' )
+    .then(response => {
+      response.getBody()
+      req.body = response.body;
+      next()
+    })
+}
+
+const GetPlayerSummaries = (req, res, next) => {
+  if (!req.body) return res.sendStatus(400)
+  const steamId = JSON.parse(req.body);
+
+
+  requestify.get(url + '/ISteamUser/GetPlayerSummaries/v0002/?key=' + key + '&steamids=' + steamId.response.steamid )
+    .then(response => {
+      response.getBody()
+      res.send(response.body)
+    })
+}
+
+
+
+// Api client
+app.post('/api/player', [GetPlayerId, GetPlayerSummaries])
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

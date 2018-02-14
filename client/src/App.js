@@ -17,7 +17,20 @@ class App extends Component {
   }
 
   callApi = async () => {
-    const response = await fetch('/api/hello');
+    const response = await fetch('/api/player',
+      {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify(
+          {
+            idPlayer: 'hwestar',
+          }
+        )
+      }
+    );
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
@@ -32,7 +45,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">{this.state.response}</p>
+        <p className="App-intro"></p>
       </div>
     );
   }
