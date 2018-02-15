@@ -19,7 +19,7 @@ const key = '7D5F2FA02FF09ACA687DE979BE355B30';
 const GetPlayerId = (req, res, next) => {
   if (!req.body) return res.sendStatus(400)
 
-  requestify.get(url + '/ISteamUser/ResolveVanityURL/v0001/?key=' + key + '&vanityurl=gwellir' )
+  requestify.get(url + '/ISteamUser/ResolveVanityURL/v0001/?key=' + key + '&vanityurl=' + req.body.idPlayer + ' ' )
     .then(response => {
       response.getBody()
       req.body = response.body;
@@ -35,7 +35,8 @@ const GetPlayerSummaries = (req, res, next) => {
   requestify.get(url + '/ISteamUser/GetPlayerSummaries/v0002/?key=' + key + '&steamids=' + steamId.response.steamid )
     .then(response => {
       response.getBody()
-      res.send(response.body)
+      const resultJson = JSON.parse(response.body)
+      res.send(resultJson.response.players[0])
     })
 }
 

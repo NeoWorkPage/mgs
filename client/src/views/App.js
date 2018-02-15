@@ -1,53 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
+import DevTools from 'mobx-react-devtools'
+import { Provider } from 'mobx-react';
+import { useStrict } from 'mobx';
 
-import logo from '../img/logo.svg';
+// Components
+import Player from '../components/Player'
 
-import '../scss/App.scss';
+// stores
+import playerStore from '../stores/player-store';
 
-class App extends Component {
-  state = {
-    response: ''
-  };
+// scss
+import '../scss/index.scss';
 
-  componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
-  }
+// use strict
+useStrict(true);
 
-  callApi = async () => {
-    const response = await fetch('/api/player',
-      {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: "POST",
-        body: JSON.stringify(
-          {
-            idPlayer: 'hwestar',
-          }
-        )
-      }
-    );
-    const body = await response.json();
 
-    if (response.status !== 200) throw Error(body.message);
+const stores = { playerStore };
 
-    return body;
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro"></p>
-      </div>
-    );
-  }
-}
+const App = props => (
+  <Provider {...stores}>
+    <div className="App">
+      <Player/>
+      <DevTools/>
+    </div>
+  </Provider>
+)
 
 export default App;
