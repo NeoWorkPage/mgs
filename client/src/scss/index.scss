@@ -1,5 +1,13 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}
+
+// Css reset
+@import "css-reset";
+
+// Fonts
+@import "fonts";
+
+// App
+@import "app";
+
+
+// Button
+@import "button";

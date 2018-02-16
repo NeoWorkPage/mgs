@@ -1,0 +1,13 @@
+@import "../../scss/default";
+
+.main{
+  display: flex;
+  height: 100%;
+  &_bar{
+    flex: 1 30%;
+    height: 100%;
+  }
+  &_page{
+    flex: 1 70%;
+  }
+}
