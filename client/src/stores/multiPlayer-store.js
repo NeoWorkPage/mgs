@@ -34,7 +34,6 @@ class MultiPlayersStore {
     const ln1 =  more.length;
     const ln2 =  less.length;
 
-    console.log( 'ln1: ' + ln1 + ' ln2: ' + ln2);
     for (let i = 0; i < ln1; ++i){
       cache = more[i].appid;
       for (let j = 0; j < ln2; ++j){
