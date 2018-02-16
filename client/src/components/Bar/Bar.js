@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react'
 
 // Components
-import BarList from './BarList'
-
+import BarList from '../BarList/BarList'
 
 // Scss
 import './Bar.scss'
@@ -30,7 +29,8 @@ class Bar extends Component {
   listPlayers = () => {
     return this.props.searchPlayersStore.allPlayer.map((item, key) => (
       <BarList
-        id={ key }
+        key={ key }
+        idItem={ key }
         item={ item }
         profileurl={ item.profileurl }
         avatarfull={ item.avatarfull }

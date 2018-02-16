@@ -25,13 +25,13 @@ class Search extends Component {
                  placeholder='Введите SteamID / SteamCommunityID / Имя профиля / URL профиля '
                  name='search'
                  className='input'
-                 value={ this.state.player }
+                 value={ this.state.search }
                  onChange={ this.handleInput }
           />
 
           <button onClick={ this.postApiPlayer }
                   className='button'
-                  disabled={this.props.loaderStore.loaderApi}
+                  disabled={this.props.loaderStore.loaderApi || this.state.search === ''}
           >Добавить</button>
         </div>
       </div>
@@ -46,7 +46,11 @@ class Search extends Component {
 
 
   postApiPlayer = () => {
+    if(this.state.search === '') return alert('Введите профиль!')
     this.props.searchPlayersStore.getPlayer(this.state.search)
+    this.setState({
+      search: ''
+    })
   }
 }
 

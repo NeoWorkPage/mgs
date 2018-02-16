@@ -36,11 +36,19 @@ class SearchPlayersStore {
             this.error()
           }
         })
+        .catch(() => {
+          this.error()
+          loaderStore.loadingUpdate(false)
+        })
     } else {
       axios.post('/api/player-id/', {idPlayer: id})
         .then(response => {
           loaderStore.loadingUpdate(false)
           this.pushPlayer(response.data)
+        })
+        .catch(() => {
+          this.error()
+          loaderStore.loadingUpdate(false)
         })
     }
   }

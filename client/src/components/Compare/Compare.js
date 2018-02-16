@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import CompareHeader from './CompareHeader'
+import CompareHeader from '../CompareHeader/CompareHeader'
 import CompareTable from '../CompareTable/CompareTable'
 
 // Scss

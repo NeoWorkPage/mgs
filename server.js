@@ -32,6 +32,7 @@ const getPlayerId = (res, cb) => {
     .then(response => {
       response.getBody()
       const resultJson = JSON.parse(response.body)
+      if(resultJson.response.players.length === 0) return cb('error')
       cb({
         personaname: resultJson.response.players[0].personaname,
         steamid: resultJson.response.players[0].steamid,
@@ -112,6 +113,7 @@ const GetPlayerSummaries = (req, res, next) => {
 
   const steamId = JSON.parse(req.body);
   getPlayerId(steamId.response.steamid, function (response) {
+    if(response === 'error') return res.sendStatus(400)
     res.send(response)
   })
 };
@@ -125,7 +127,7 @@ app.post('/api/player-id', (req, res) => {
   if (!req.body) return res.sendStatus(400);
 
   getPlayerId(req.body.idPlayer, function (response) {
-    console.log(req.body)
+    if(response === 'error') return res.sendStatus(400)
     res.send(response)
   })
 })

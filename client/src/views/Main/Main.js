@@ -2,7 +2,7 @@ import React from 'react';
 
 // Components
 import Bar from '../../components/Bar/Bar'
-import Compare from '../../components/Complare/Compare'
+import Compare from '../../components/Compare/Compare'
 
 // Scss
 import './Main.scss'

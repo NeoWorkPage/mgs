@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function BarList(props) {
   return (
-    <div className={'bar__item ' + props.className } key={props.key}>
+    <div className={'bar__item ' + props.className } >
       <div className="bar__item__img">
         <a href={ props.profileurl } target='_blank'>
           <img src={ props.avatarfull } alt="avatar"/>
@@ -29,7 +29,7 @@ function BarList(props) {
             className='button button-green'>+ Добавить</button>
         }
         <button
-          onClick={() => props.delete( props.id )}
+          onClick={() => props.delete( props.idItem )}
           disabled={ props.loader }
           className='button button-red'>- Удалить</button>
       </div>
@@ -40,7 +40,6 @@ function BarList(props) {
 
 
 BarList.propTypes = {
-  key: PropTypes.number,
   profileurl: PropTypes.string,
   avatarfull: PropTypes.string,
   personaname: PropTypes.string,

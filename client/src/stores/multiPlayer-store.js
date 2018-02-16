@@ -14,34 +14,40 @@ class MultiPlayersStore {
     return this.players
   }
 
+  @computed get gamesLength () {
+    return this.players.length
+  }
+
   @computed get multiPlayerGames() {
-    if(this.players.length !== 2) return 'Error'
+    if(this.players.length !== 2) return null
+    const arr1 = this.players[0].games
+    const arr2 = this.players[1].games
 
-    // Фильтрация похожих игр
-    const player1 = this.players[0].games.length >= this.players[1].games.length ?  this.players[0].games : this.players[1].games;
-    const player2 = this.players[0].games.length >= this.players[1].games.length ?  this.players[0].games : this.players[1].games;
+    const more = arr1.length > arr2.length ? arr1 : arr2
+    const less = arr1.length < arr2.length ? arr1 : arr2
 
-    //здесь будем хранить значение элемента
+
     let cache;
-    const games = []
+    const games = [];
 
     //сохраним длины массивов:
-    const ln1 =  player1.length >= player2.length ?  player1.length : player2.length;
-    const ln2 =  player1.length >= player2.length ?  player1.length : player2.length;
+    const ln1 =  more.length;
+    const ln2 =  less.length;
 
+    console.log( 'ln1: ' + ln1 + ' ln2: ' + ln2);
     for (let i = 0; i < ln1; ++i){
-      cache = player1[i].appid;
+      cache = more[i].appid;
       for (let j = 0; j < ln2; ++j){
-        if (cache === player2[j].appid){
-          games.push(player2[i])
+        if (cache === less[j].appid){
+          games.push(less[j])
           break;
         }
       }
     }
-    console.log(games)
+    if(games.length === 0) return null
     return games
-  }
 
+  }
 
   @action getMultiPlayer = item => {
     if (this.players.length >= 2) return this.error('Не больше двух профилей!')
