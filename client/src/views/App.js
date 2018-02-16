@@ -1,5 +1,4 @@
 import React from 'react';
-import DevTools from 'mobx-react-devtools'
 import { Provider } from 'mobx-react';
 import { useStrict } from 'mobx';
 
@@ -30,7 +29,6 @@ const App = props => (
       <Header/>
       <Main/>
       <Loader/>
-      <DevTools/>
     </div>
   </Provider>
 )

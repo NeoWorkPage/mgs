@@ -88,7 +88,6 @@ const SteamSpyApi = (req, res, next) => {
         cache = array1[i].appid;
         for (let j = 0; j < ln2; ++j){
           if (cache === array2[j].appid){
-            console.log('найдено совпадение: ' + cache);
             games.push(array1[i])
             break;
           }
