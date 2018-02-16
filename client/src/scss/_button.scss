@@ -1,0 +1,33 @@
+.button{
+  cursor: pointer;
+  padding: 9px;
+  font-family: $fonts-base;
+  background-color: #aaa;
+  font-size: .7em;
+  border: none;
+  border-radius: 3px;
+  text-transform: uppercase;
+  transition: .3s;
+  opacity: .4;
+  &:disabled{
+    opacity: .3;
+    cursor: default;
+    &:hover{
+      opacity: .3;
+    }
+  }
+  &:hover{
+    opacity: 1;
+  }
+  &-green{
+    background-color:#a2c161;
+    color: #262b34;
+    font-size: .6em;
+  }
+  &-red{
+    font-size: .6em;
+    color: #262b34;
+    background-color: #b77272;
+  }
+}
+

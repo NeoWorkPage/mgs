@@ -1,0 +1,17 @@
+@import "../../scss/default";
+
+.header{
+  font-family: $fonts-base;
+  background-color: #171a21;
+  padding: 40px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.logo{
+  color: #b8b6b4;
+  font-family: $font-bold-base;
+  font-size: 1.6em;
+}

@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "concurrently": "^3.5.0",
+    "prop-types": "^15.6.0",
     "requestify": "^0.2.5"
   }
 }

@@ -4,10 +4,16 @@ import { Provider } from 'mobx-react';
 import { useStrict } from 'mobx';
 
 // Components
-import Player from '../components/Player'
+import Header from '../components/Header/Header'
+import Loader from '../components/Loader/Loader'
+
+// Views
+import Main from './Main/Main'
 
 // stores
-import playerStore from '../stores/player-store';
+import searchPlayersStore from '../stores/search-store';
+import multiPlayersStore from '../stores/multiPlayer-store';
+import loaderStore from '../stores/loader-store';
 
 // scss
 import '../scss/index.scss';
@@ -16,12 +22,14 @@ import '../scss/index.scss';
 useStrict(true);
 
 
-const stores = { playerStore };
+const stores = { searchPlayersStore, multiPlayersStore, loaderStore };
 
 const App = props => (
   <Provider {...stores}>
-    <div className="App">
-      <Player/>
+    <div className="app">
+      <Header/>
+      <Main/>
+      <Loader/>
       <DevTools/>
     </div>
   </Provider>

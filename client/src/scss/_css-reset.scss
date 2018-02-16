@@ -1,4 +1,5 @@
 @import "default";
+@import "extends";
 
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
@@ -32,7 +33,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
   line-height: 1;
-  min-width: 320px;
+  min-width: 1280px;
 }
 ol, ul {
   list-style: none;
@@ -50,6 +51,33 @@ table {
   border-spacing: 0;
 }
 
+h1{
+  @extend .font-base;
+  font-size: 2.6em;
+  line-height: 1.25em;
+}
+h2{
+  @extend .font-base;
+  font-size: 2.25em;
+  line-height: 1.25em;
+}
+h4{
+  @extend .font-base;
+  font-size: 1.25em;
+  line-height: 1.25em;
+}
+h3{
+  @extend .font-base;
+  font-size: 1.75em;
+  line-height: 1.25em;
+}
+
+p{
+  font-family: $fonts-base;
+  color: #606060;
+  font-size: 1em;
+  line-height: 1.375em;
+}
 
 ::selection {
   background: rgb(122, 161, 39); /* Safari */
